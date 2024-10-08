@@ -25,7 +25,7 @@
 
 ;;; Code:
 
-(require 'cider-interaction)
+(require 'cider)
 
 (defvar typed-clojure-error-mode-keywords
       '(("^Type Error\\|Internal Error" . font-lock-constant-face)
