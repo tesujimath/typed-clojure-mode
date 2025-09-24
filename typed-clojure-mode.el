@@ -1,4 +1,4 @@
-;;; typed-clojure-mode.el --- Typed Clojure minor mode for Emacs
+;;; typed-clojure-mode.el --- Typed Clojure minor mode for Emacs -*- lexical-binding: t; -*-
 
 ;; Copyright © 2014 John Walker
 ;;
@@ -135,7 +135,7 @@ and annotation snippets.
    '()))
 
 (defun typed-clojure-make-check-ns-handler (cb)
-  (lexical-let ((cb cb))
+  (let ((cb cb))
     (nrepl-make-response-handler
      cb
      (lambda (buffer val)
@@ -151,7 +151,7 @@ and annotation snippets.
 	     (goto-char (point-max))
 	     (mapcar
 	      (lambda (x)
-		(lexical-let ((msg    (first x))
+		(let ((msg    (first x))
 			      (line   (second x))
 			      (column (third x))
 			      (form   (fourth x))
@@ -193,9 +193,9 @@ and annotation snippets.
 
 (defun typed-clojure-ann-var ()
   (interactive)
-  (lexical-let ((t (read-string "Annotate var with type (default Any): ")))
-    (lexical-let ((sym (thing-at-point 'symbol)))
-      (lexical-let ((p (typed-clojure-qualify-ann-var sym)))
+  (let ((t (read-string "Annotate var with type (default Any): ")))
+    (let ((sym (thing-at-point 'symbol)))
+      (let ((p (typed-clojure-qualify-ann-var sym)))
         (if p
             (progn
               (beginning-of-defun)
@@ -209,7 +209,7 @@ and annotation snippets.
 
 (defun typed-clojure-ann-form ()
   (interactive)
-  (lexical-let ((t (read-string "Annotate form with type (default Any): ")))
+  (let ((t (read-string "Annotate form with type (default Any): ")))
     (ignore-errors
       (forward-sexp)
       (backward-sexp))
