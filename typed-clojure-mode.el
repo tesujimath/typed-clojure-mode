@@ -32,6 +32,7 @@
 (require 'cider)
 (require 'cider-client)
 (require 'clojure-mode)
+(require 'cl)
 (require 'typed-clojure-error-mode)
 
 (defvar typed-clojure-mode-map
