@@ -54,7 +54,7 @@ and annotation snippets.
   :keymap typed-clojure-mode-map)
 
 (defconst typed-clojure-current-alias-clj
-  "(if-let [[al typedns] (first (filter #(=
+  "(if-let [[al typedns] (cl-first (filter #(=
                                        (find-ns 'clojure.core.typed)
                                        (val %))
                                      (ns-aliases *ns*)))]
@@ -151,12 +151,12 @@ and annotation snippets.
 	     (goto-char (point-max))
 	     (mapcar
 	      (lambda (x)
-		(let ((msg    (first x))
-			      (line   (second x))
-			      (column (third x))
-			      (form   (fourth x))
-			      (source (fifth x))
-			      (ns     (sixth x)))
+		(let ((msg    (cl-first x))
+			      (line   (cl-second x))
+			      (column (cl-third x))
+			      (form   (cl-fourth x))
+			      (source (cl-fifth x))
+			      (ns     (cl-sixth x)))
 		  (insert "Type Error (")
 		  (insert-button (concat (or source "NO_SOURCE_FILE")
 					 ":"
